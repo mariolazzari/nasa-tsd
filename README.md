@@ -7,7 +7,7 @@ YouTube [playlist](https://www.youtube.com/watch?v=yTBXeGqO91Y)
 
 ```ts
 // with recursion
-export function fact_r(n: number): number {
+function fact_r(n: number): number {
   if (n <= 1) {
     return 1;
   }
@@ -15,7 +15,7 @@ export function fact_r(n: number): number {
 }
 
 // without recursion
-export function fact(n: number): number {
+function fact(n: number): number {
   let res = 1;
   for (let i = n; i > 1; i--) {
     res *= i;
@@ -28,9 +28,9 @@ export function fact(n: number): number {
 ## All loops must have fixed limits
 
 ```ts
-export const MAX_ITERATIONS = 1000;
+const MAX_ITERATIONS = 1000;
 
-export function findElementMax<T>(arr: T[], target: T): number {
+function findElementMax<T>(arr: T[], target: T): number {
   let i = 0;
 
   // infinie loop if not found: use MAX
@@ -41,7 +41,7 @@ export function findElementMax<T>(arr: T[], target: T): number {
   return i;
 }
 
-export function findElement<T>(arr: T[], target: T): number {
+function findElement<T>(arr: T[], target: T): number {
   // use collection size as limit
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === target) {
@@ -50,5 +50,46 @@ export function findElement<T>(arr: T[], target: T): number {
   }
 
   return -1;
+}
+```
+
+## Avoid Heap memory, use stack one
+
+- Prefer local vars
+- Prefer primitive types to objects
+- Pass vars as arguments, avoiding closures
+
+```ts
+// Avoid heap memory, use stack one
+ const greeting = "Ciao";
+
+function greetMem(name: string): string {
+  // greeting stays in memory as closure
+  return `${greeting} ${name}`;
+}
+
+function greet(name: string): string {
+  const greeting = "Ciao";
+
+  return `${greeting} ${name}`;
+}
+```
+
+## Restrict functions to single printed page (60 lines)
+
+- Solid principles restpected
+- Split longer function into more ones
+
+## Use a minimun of 2 runtime assertions per function
+
+- Graceful degratation
+- System keep on working in a controlled manner even when unexpected conditions occur
+
+```ts
+function divide(a: number, b: number): number {
+  console.assert(typeof a === "number", "a must be a number");
+  console.assert(b !== 0, "b musto be different than 0");
+
+  return a / b;
 }
 ```
