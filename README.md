@@ -93,3 +93,34 @@ function divide(a: number, b: number): number {
   return a / b;
 }
 ```
+
+## Smallest scope as possible
+
+- Avoid gloabl vars
+- Keep vars as private as possible
+
+## Check return values of non void functions
+
+## Use code preprocessor sparingly
+
+## Restrinct reference pointers to one level
+
+```ts
+const rocket = {
+  name:"Falcon 1",
+  engines: {
+    model: "Kestrel",
+    thrust: 35_000
+  }
+}
+
+const engine = rocket.engines;
+const thrust = engine.thrust;
+```
+
+## Compile with all possible warnings
+
+- linter rules
+- TypeScript
+- [SonarCube](https://github.com/SonarSource/sonarqube)
+- dependency scan
